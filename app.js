@@ -1,4 +1,4 @@
-var startGameBtn = document.getElementById('start-game-btn'); // excalamation mark tells TS that this cannot be null
+var startGameBtn = document.getElementById('start-game-btn');
 var ROCK = 'ROCK';
 var PAPER = 'PAPER';
 var SCISSORS = 'SCISSORS';
@@ -10,7 +10,7 @@ var RESULT_USER_WINS = 'USER_WINS';
 var RESULT_BOT_WINS = 'BOT_WINS';
 var gameIsRunning = false;
 var getUserChoice = function () {
-    var selection = prompt("".concat(ROCK, ", ").concat(PAPER, ", ").concat(SCISSORS, ", ").concat(LIZARD, " or ").concat(SPOCK, " ?"), '').toUpperCase(); // excalamation mark tells TS that this cannot be null
+    var selection = prompt("".concat(ROCK, ", ").concat(PAPER, ", ").concat(SCISSORS, ", ").concat(LIZARD, " or ").concat(SPOCK, " ?"), '').toUpperCase();
     if (selection !== ROCK &&
         selection !== PAPER &&
         selection !== SCISSORS &&
@@ -39,8 +39,7 @@ var getBotChoice = function () {
         return SPOCK;
     }
 };
-var getWinner = function (bChoice, // by making sure that there could not be other types returned, we make sure that TS does not get annoyed by this
-uChoice) {
+var getWinner = function (bChoice, uChoice) {
     if (uChoice === void 0) { uChoice = DEFAULT_CHOICE; }
     if (bChoice === uChoice) {
         return RESULT_DRAW;
@@ -66,16 +65,10 @@ startGameBtn.addEventListener('click', function () {
         return;
     }
     gameIsRunning = true;
-    console.log('Game is starting...');
     var userSelection = getUserChoice();
     var botSelection = getBotChoice();
-    var winner; // since it can be both void and string, we choose any type
-    if (userSelection) {
-        winner = getWinner(botSelection, userSelection);
-    }
-    else {
-        winner = getWinner(botSelection, userSelection);
-    }
+    var winner;
+    winner = getWinner(botSelection, userSelection);
     var message = "You picked ".concat(userSelection || DEFAULT_CHOICE, ", bot picked ").concat(botSelection, ", so you ");
     if (winner === RESULT_DRAW) {
         message = message + 'had a draw.';

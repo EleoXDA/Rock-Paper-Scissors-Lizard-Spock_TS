@@ -1,22 +1,22 @@
-const startGameBtn = document.getElementById('start-game-btn')!; // excalamation mark tells TS that this cannot be null
+const startGameBtn = document.getElementById('start-game-btn')!;
 
 const ROCK: string = 'ROCK';
 const PAPER: string = 'PAPER';
 const SCISSORS: string = 'SCISSORS';
 const LIZARD: string = 'LIZARD';
 const SPOCK: string = 'SPOCK';
-const DEFAULT_CHOICE = ROCK;
-const RESULT_DRAW = 'DRAW';
-const RESULT_USER_WINS = 'USER_WINS';
-const RESULT_BOT_WINS = 'BOT_WINS';
+const DEFAULT_CHOICE: string = ROCK;
+const RESULT_DRAW: string = 'DRAW';
+const RESULT_USER_WINS: string = 'USER_WINS';
+const RESULT_BOT_WINS: string = 'BOT_WINS';
 
-let gameIsRunning = false;
+let gameIsRunning: boolean = false;
 
 const getUserChoice = function (): string {
   const selection = prompt(
     `${ROCK}, ${PAPER}, ${SCISSORS}, ${LIZARD} or ${SPOCK} ?`,
     ''
-  )!.toUpperCase(); // excalamation mark tells TS that this cannot be null
+  )!.toUpperCase();
   if (
     selection !== ROCK &&
     selection !== PAPER &&
@@ -46,7 +46,7 @@ const getBotChoice = function (): string {
 };
 
 const getWinner = function (
-  bChoice: string, // by making sure that there could not be other types returned, we make sure that TS does not get annoyed by this
+  bChoice: string,
   uChoice = DEFAULT_CHOICE
 ):string {
   if (bChoice === uChoice) {
@@ -74,16 +74,11 @@ startGameBtn.addEventListener('click', function (): void {
     return;
   }
   gameIsRunning = true;
-  console.log('Game is starting...');
   const userSelection = getUserChoice();
   const botSelection = getBotChoice();
-  let winner: any; // since it can be both void and string, we choose any type
-  if (userSelection) {
-    winner = getWinner(botSelection, userSelection);
-  } else {
-    winner = getWinner(botSelection, userSelection);
-  }
-  let message = `You picked ${
+  let winner: any;
+  winner = getWinner(botSelection, userSelection);
+  let message: string = `You picked ${
     userSelection || DEFAULT_CHOICE
   }, bot picked ${botSelection}, so you `;
   if (winner === RESULT_DRAW) {
