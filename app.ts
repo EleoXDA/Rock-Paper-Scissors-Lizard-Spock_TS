@@ -46,7 +46,7 @@ const getBotChoice = () => {
 };
 
 const getWinner = (
-  bChoice,
+  bChoice: string,
   uChoice = DEFAULT_CHOICE // when userChoice is undefined, DEFAULT_CHOICE will override it
 ) =>
   bChoice === uChoice
