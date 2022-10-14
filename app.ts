@@ -16,7 +16,7 @@ const getUserChoice = () => {
   const selection = prompt(
     `${ROCK}, ${PAPER}, ${SCISSORS}, ${LIZARD} or ${SPOCK} ?`,
     ''
-  ).toUpperCase(); // uppercase will make sure to accept user options when it is not in capitals
+  )!.toUpperCase();
   if (
     selection !== ROCK &&
     selection !== PAPER &&
