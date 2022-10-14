@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server"
   },
+  "compilerOptions": {
+    "strict": true
+  },
   "repository": {
     "type": "git",
     "url": "eleoxda"
@@ -17,6 +20,7 @@
   "author": "EleoXDA",
   "license": "ISC",
   "devDependencies": {
-    "lite-server": "^2.6.1"
+    "lite-server": "^2.6.1",
+    "typescript": "^4.8.4"
   }
 }
