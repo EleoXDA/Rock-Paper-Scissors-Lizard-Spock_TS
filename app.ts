@@ -31,7 +31,7 @@ const getUserChoice = function (): string {
 };
 
 const getBotChoice = function (): string {
-  const randomValue = Math.random();
+  const randomValue: number = Math.random();
   if (randomValue < 0.2) {
     return ROCK;
   } else if (randomValue < 0.4) {
@@ -76,7 +76,7 @@ startGameBtn.addEventListener('click', function (): void {
   gameIsRunning = true;
   const userSelection = getUserChoice();
   const botSelection = getBotChoice();
-  let winner: any;
+  let winner: string;
   winner = getWinner(botSelection, userSelection);
   let message: string = `You picked ${
     userSelection || DEFAULT_CHOICE
