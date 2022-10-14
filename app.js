@@ -1,4 +1,4 @@
-var startGameBtn = document.getElementById('start-game-btn');
+var startGameBtn = document.getElementById('start-game-btn'); // excalamation mark tells TS that this cannot be null
 var ROCK = 'ROCK';
 var PAPER = 'PAPER';
 var SCISSORS = 'SCISSORS';
@@ -10,14 +10,14 @@ var RESULT_USER_WINS = 'USER_WINS';
 var RESULT_BOT_WINS = 'BOT_WINS';
 var gameIsRunning = false;
 var getUserChoice = function () {
-    var selection = prompt("".concat(ROCK, ", ").concat(PAPER, ", ").concat(SCISSORS, ", ").concat(LIZARD, " or ").concat(SPOCK, " ?"), '').toUpperCase();
+    var selection = prompt("".concat(ROCK, ", ").concat(PAPER, ", ").concat(SCISSORS, ", ").concat(LIZARD, " or ").concat(SPOCK, " ?"), '').toUpperCase(); // excalamation mark tells TS that this cannot be null
     if (selection !== ROCK &&
         selection !== PAPER &&
         selection !== SCISSORS &&
         selection !== LIZARD &&
         selection !== SPOCK) {
         alert("Invalid choice! We chose ".concat(DEFAULT_CHOICE, " for you!"));
-        return;
+        return DEFAULT_CHOICE;
     }
     return selection;
 };
@@ -39,23 +39,27 @@ var getBotChoice = function () {
         return SPOCK;
     }
 };
-var getWinner = function (bChoice, uChoice // when userChoice is undefined, DEFAULT_CHOICE will override it
-) {
+var getWinner = function (bChoice, // by making sure that there could not be other types returned, we make sure that TS does not get annoyed by this
+uChoice) {
     if (uChoice === void 0) { uChoice = DEFAULT_CHOICE; }
-    return bChoice === uChoice
-        ? RESULT_DRAW
-        : (bChoice === ROCK && uChoice === PAPER) ||
-            (bChoice === PAPER && uChoice === SCISSORS) ||
-            (bChoice === LIZARD && uChoice === ROCK) ||
-            (bChoice === SPOCK && uChoice === LIZARD) ||
-            (bChoice === SCISSORS && uChoice === SPOCK) ||
-            (bChoice === LIZARD && uChoice === SCISSORS) ||
-            (bChoice === PAPER && uChoice === LIZARD) ||
-            (bChoice === SPOCK && uChoice === PAPER) ||
-            (bChoice === ROCK && uChoice === SPOCK) ||
-            (bChoice === SCISSORS && uChoice === ROCK)
-            ? RESULT_USER_WINS
-            : RESULT_BOT_WINS;
+    if (bChoice === uChoice) {
+        RESULT_DRAW;
+    }
+    else if ((bChoice === ROCK && uChoice === PAPER) ||
+        (bChoice === PAPER && uChoice === SCISSORS) ||
+        (bChoice === LIZARD && uChoice === ROCK) ||
+        (bChoice === SPOCK && uChoice === LIZARD) ||
+        (bChoice === SCISSORS && uChoice === SPOCK) ||
+        (bChoice === LIZARD && uChoice === SCISSORS) ||
+        (bChoice === PAPER && uChoice === LIZARD) ||
+        (bChoice === SPOCK && uChoice === PAPER) ||
+        (bChoice === ROCK && uChoice === SPOCK) ||
+        (bChoice === SCISSORS && uChoice === ROCK)) {
+        RESULT_USER_WINS;
+    }
+    else {
+        RESULT_BOT_WINS;
+    }
 };
 startGameBtn.addEventListener('click', function () {
     if (gameIsRunning) {
@@ -63,9 +67,9 @@ startGameBtn.addEventListener('click', function () {
     }
     gameIsRunning = true;
     console.log('Game is starting...');
-    var userSelection = getUserChoice(); // might be undefined when default option is removed
+    var userSelection = getUserChoice();
     var botSelection = getBotChoice();
-    var winner;
+    var winner; // we needed to make
     if (userSelection) {
         winner = getWinner(botSelection, userSelection);
     }
