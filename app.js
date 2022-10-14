@@ -43,7 +43,7 @@ var getWinner = function (bChoice, // by making sure that there could not be oth
 uChoice) {
     if (uChoice === void 0) { uChoice = DEFAULT_CHOICE; }
     if (bChoice === uChoice) {
-        RESULT_DRAW;
+        return RESULT_DRAW;
     }
     else if ((bChoice === ROCK && uChoice === PAPER) ||
         (bChoice === PAPER && uChoice === SCISSORS) ||
@@ -55,10 +55,10 @@ uChoice) {
         (bChoice === SPOCK && uChoice === PAPER) ||
         (bChoice === ROCK && uChoice === SPOCK) ||
         (bChoice === SCISSORS && uChoice === ROCK)) {
-        RESULT_USER_WINS;
+        return RESULT_USER_WINS;
     }
     else {
-        RESULT_BOT_WINS;
+        return RESULT_BOT_WINS;
     }
 };
 startGameBtn.addEventListener('click', function () {
@@ -69,7 +69,7 @@ startGameBtn.addEventListener('click', function () {
     console.log('Game is starting...');
     var userSelection = getUserChoice();
     var botSelection = getBotChoice();
-    var winner; // we needed to make
+    var winner; // since it can be both void and string, we choose any type
     if (userSelection) {
         winner = getWinner(botSelection, userSelection);
     }

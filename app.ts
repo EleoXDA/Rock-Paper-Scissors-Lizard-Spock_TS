@@ -6,9 +6,9 @@ const SCISSORS: string = 'SCISSORS';
 const LIZARD: string = 'LIZARD';
 const SPOCK: string = 'SPOCK';
 const DEFAULT_CHOICE = ROCK;
-const RESULT_DRAW: string = 'DRAW';
-const RESULT_USER_WINS: string = 'USER_WINS';
-const RESULT_BOT_WINS: string = 'BOT_WINS';
+const RESULT_DRAW = 'DRAW';
+const RESULT_USER_WINS = 'USER_WINS';
+const RESULT_BOT_WINS = 'BOT_WINS';
 
 let gameIsRunning = false;
 
@@ -48,9 +48,9 @@ const getBotChoice = function (): string {
 const getWinner = function (
   bChoice: string, // by making sure that there could not be other types returned, we make sure that TS does not get annoyed by this
   uChoice = DEFAULT_CHOICE
-): void {
+):string {
   if (bChoice === uChoice) {
-    RESULT_DRAW;
+    return RESULT_DRAW;
   } else if (
     (bChoice === ROCK && uChoice === PAPER) ||
     (bChoice === PAPER && uChoice === SCISSORS) ||
@@ -63,9 +63,9 @@ const getWinner = function (
     (bChoice === ROCK && uChoice === SPOCK) ||
     (bChoice === SCISSORS && uChoice === ROCK)
   ) {
-    RESULT_USER_WINS;
+    return RESULT_USER_WINS;
   } else {
-    RESULT_BOT_WINS;
+    return RESULT_BOT_WINS;
   }
 };
 
@@ -77,7 +77,7 @@ startGameBtn.addEventListener('click', function (): void {
   console.log('Game is starting...');
   const userSelection = getUserChoice();
   const botSelection = getBotChoice();
-  let winner: any; // we needed to make
+  let winner: any; // since it can be both void and string, we choose any type
   if (userSelection) {
     winner = getWinner(botSelection, userSelection);
   } else {
