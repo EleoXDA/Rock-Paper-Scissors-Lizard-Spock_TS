@@ -13,7 +13,7 @@ const RESULT_BOT_WINS: string = 'BOT_WINS';
 let gameIsRunning: boolean = false;
 
 const getUserChoice = function (): string {
-  const selection = prompt(
+  const selection :string = prompt(
     `${ROCK}, ${PAPER}, ${SCISSORS}, ${LIZARD} or ${SPOCK} ?`,
     ''
   )!.toUpperCase();
@@ -76,8 +76,7 @@ startGameBtn.addEventListener('click', function (): void {
   gameIsRunning = true;
   const userSelection = getUserChoice();
   const botSelection = getBotChoice();
-  let winner: string;
-  winner = getWinner(botSelection, userSelection);
+  let winner: string = getWinner(botSelection, userSelection);
   let message: string = `You picked ${
     userSelection || DEFAULT_CHOICE
   }, bot picked ${botSelection}, so you `;

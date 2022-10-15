@@ -67,8 +67,7 @@ startGameBtn.addEventListener('click', function () {
     gameIsRunning = true;
     var userSelection = getUserChoice();
     var botSelection = getBotChoice();
-    var winner;
-    winner = getWinner(botSelection, userSelection);
+    var winner = getWinner(botSelection, userSelection);
     var message = "You picked ".concat(userSelection || DEFAULT_CHOICE, ", bot picked ").concat(botSelection, ", so you ");
     if (winner === RESULT_DRAW) {
         message = message + 'had a draw.';
