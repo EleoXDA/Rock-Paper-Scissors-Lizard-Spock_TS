@@ -1,4 +1,4 @@
-# Rock - Paper - Scissors
+# Rock - Paper - Scissors - Lizard - Spock
 
-### A javascript-powered Rock Paper Scissors game
-![bg](https://user-images.githubusercontent.com/27622683/195434358-34346499-1aeb-47d1-ab37-ee539e2077e7.jpg)
+### A javascript-powered Rock Paper Scissors game + Lizard and Spock
+![bg](https://user-images.githubusercontent.com/27622683/195978914-ff205472-b8d1-40e0-a363-e60cc7ff25a5.jpg)
